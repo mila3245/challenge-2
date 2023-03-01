@@ -1,0 +1,763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<script type="text/plain" data-cookiecategory="necessary" defer>
+            (function(w,d,s,l,i){
+                w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PQQH78P');
+        </script>
+<script defer src="/js/cookieconsent/src/cookieconsent.js" type="80bdbde2dcba5cb79b24ad3c-text/javascript"></script>
+<script src="https://accounts.google.com/gsi/client" async defer type="80bdbde2dcba5cb79b24ad3c-text/javascript"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript">
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // obtain cookieconsent plugin
+                // eslint-disable-next-line no-undef
+                const cc = initCookieConsent();
+                const lang = 'en';
+                const isCookiePage = "legal" !== 'blog';
+                // run plugin with config object
+                cc.run({
+                    autorun: true,
+                    delay: 0,
+                    current_lang: lang,
+                    auto_language: false,
+                    autoclear_cookies: true,
+                    cookie_expiration: 365,
+                    theme_css: '/js/cookieconsent/cookie.css',
+                    force_consent: isCookiePage ,
+
+                    /* New options from v2.4 (everything is optional) */
+                    // remove_cookie_tables: false              // default: false (if set to true, cookie table's html will not be generated)
+
+                    // cookie_domain: location.hostname,       	// default: current domain
+                    // cookie_path: "/",                        // default: root
+                    // cookie_same_site: "Lax",
+
+                    /* Manage existing <scripts> tags (check readme.md) */
+                    page_scripts: true, // default: false (by default don't manage existing script tags)
+
+                    /* Basic gui options */
+                    gui_options: {
+                        consent_modal: {
+                            layout: 'cloud', // box(default),cloud,bar
+                            position: 'bottom center', // bottom(default),top + left,right,center:=> examples: 'bottom' or 'top right'
+                            transition: 'slide', // zoom(default),slide
+                        },
+                        settings_modal: {
+                            layout: 'box', // box(default),bar
+                            // position: 'left',            // right(default),left (available only if bar layout selected)
+                            transition: 'slide', // zoom(default),slide
+                        },
+                    },
+
+                    /* End new options added in v2.4 */
+
+                    onAccept(cookie) {
+                        if (!cc.allowedCategory('analytics')) {
+                            dataLayer.push({'event': 'cc_cookie_consent_analytics'});
+                        }
+                        if (!cc.allowedCategory('targeting')) {
+                            dataLayer.push({'event': 'cc_cookie_consent_targeting'});
+                        }
+
+                        // Delete line below
+                    },
+
+                    onChange(cookie) {
+                        console.log('onChange fired ...');
+                    },
+
+                    languages: {
+                        'en': {
+                            consent_modal: {
+                                title: getTitleStart(),
+                                description: getDescriptionStart(),
+                                primary_btn: {
+                                    text: getAcceptAll(),
+                                    role: 'accept_all', // 'accept_selected' or 'accept_all'
+                                },
+                                secondary_btn: {
+                                    text: getManagePreferences(),
+                                    role: 'settings', // 'settings' or 'accept_necessary'
+                                },
+                            },
+                            settings_modal: {
+                                title: '<div>Cookie preferences</div><div aria-hidden="true" style="font-size: .8em; font-weight: 200; color: #687278; margin-top: 5px;">Powered by <a tabindex="-1" aria-hidden="true" href="https://github.com/orestbida/cookieconsent/" style="text-decoration: underline;">cookie-consent</a></div>',
+                                save_settings_btn: getSaveCurrentSelection(),
+                                accept_all_btn: getAcceptAll(),
+                                close_btn_label: getClose(),
+                                cookie_table_headers: [
+                                    { col1: "Name" },
+                                    { col2: "Domain" },
+                                    { col3: "What is this?" },
+                                ],
+                                blocks: [
+                                    {
+                                        title: getCookieUsage(),
+                                        description: getDescription(),
+                                    }, {
+                                        title: getStrictCookiesTitle(),
+                                        description: getScriptCookiesDescription(),
+                                        toggle: {
+                                            value: 'necessary',
+                                            enabled: true,
+                                            readonly: true, // cookie categories with readonly=true are all treated as "necessary cookies"
+                                        },
+                                    }, {
+                                        title: getAnalyticsCookiesTitle(),
+                                        description: getAnalyticsCookiesDescription(),
+                                        toggle: {
+                                            value: 'analytics',
+                                            enabled: false,
+                                            readonly: false,
+                                        },
+                                        cookie_table: [
+                                            {
+                                                col1: '_ga',
+                                                col2: 'erasmusu.com',
+                                                col3:  'These cookies are used to distinguish users.',
+                                            },
+                                            {
+                                                col1: '_gat',
+                                                col2: 'erasmusu.com',
+                                                col3:  'These cookies are used to distinguish users.',
+                                            },
+                                            {
+                                                col1: '_gid',
+                                                col2: 'erasmusu.com',
+                                                col3: 'These cookies are used to distinguish users.',
+                                            },
+                                            {
+                                                col1: '_hjIncludedInSample',
+                                                col2: 'Hotjar',
+                                                col3: 'Hotjar Cookie. This session cookie is set to let Hotjar know whether a specific visit is included in the sample which is used to generate funnels.',
+                                                path: '/demo', // needed for autoclear cookies
+                                            },
+                                        ],
+                                    }, {
+                                        title: getTargetingCookiesTitle(),
+                                        description: getTargetingCookiesDescription(),
+                                        toggle: {
+                                            value: 'targeting',
+                                            enabled: false,
+                                            readonly: false,
+                                            reload: 'on_disable', // New option in v2.4, check readme.md
+                                        },
+                                        cookie_table: [
+                                            {
+                                                col1: 'fr',
+                                                col2: 'facebook.com',
+                                                col3: 'Facebook uses this cookies to track users, who are not connected to Facebook, for advertising purposes.',
+                                            },
+                                            {
+                                                col1: '__gads',
+                                                col2: 'Google',
+                                                col3: 'Targeting/Advertising',
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                });
+
+                function getAcceptAll()
+                {
+                    return "Accept All"                }
+                function getManagePreferences()
+                {
+                    return "Manage preferences"                }
+
+                function getSaveCurrentSelection()
+                {
+                    return "Save current selection"                }
+
+                function getTitleStart()
+                {
+                    return "Erasmusu Cookies"                }
+
+                function getClose()
+                {
+                    return "Close"                }
+
+                function getDescriptionStart()
+                {
+                    return "We use our own and third-party cookies to analyse your browsing and show you optimised advertising. By continuing to browse, you accept our <a href=\"https:\/\/erasmusu.com\/en\/legal#section-13\">Cookies Policy<\/a>."                }
+
+                function getDescription()
+                {
+                    return "When you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. This information might be about you, your preferences or your device and is mostly used to make the site work as you expect it to. The information does not usually directly identify you, but it can give you a more personalized web experience. Because we respect your right to privacy, you can choose not to allow some types of cookies. Click on the different category headings to find out more and change our default settings. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer."                }
+
+                function getCookieUsage()
+                {
+                    return "Cookie usage"                }
+
+                function getStrictCookiesTitle()
+                {
+                    return "Strictly Necessary Cookies"                }
+
+                function getScriptCookiesDescription()
+                {
+                    return "These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information."                }
+
+                function getAnalyticsCookiesTitle()
+                {
+                    return "Analytics & Performance Cookies"                }
+
+                function getAnalyticsCookiesDescription()
+                {
+                    return "These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance."                }
+
+                function getTargetingCookiesTitle()
+                {
+
+                    return "Targeting Cookies"                }
+
+                function getTargetingCookiesDescription()
+                {
+                    return "These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising."                }
+
+            });
+        </script>
+<script type="text/plain" data-cookiecategory="analytics">
+            var dataLayer = dataLayer || [];
+            var connectif_client = {
+                'primary_key': '',
+                'user_id': '',
+                '_name': '',
+                '_surname':'',
+                '_newsletter_subscription_status':'',
+                'activated': '',
+                'validated': '',
+                'city_id': '',
+                'city_name': '',
+                'last_visited_city_id': '',
+                'last_visited_city_name': '',
+                'isProvider': '',
+                'numAccommodationsPublished': '',
+                'blocked': '',
+                'lang_id':'',
+                'user_token':'',
+                'city_date':'',
+                'user_id_for_mail': '',
+                'cn_unread_messages': '',
+                'premium': '',
+                'gender': '',
+            };
+            dataLayer.push(connectif_client);
+
+                        
+            let cityId = null;
+
+            dataLayer.push({
+                'pageType': 'blog_view',
+                'pageLanguage' : 'en',
+                ...(cityId && {
+                    cityId
+                  }
+                )
+            });
+
+        </script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="google-signin-scope" content="profile email" />
+<meta name="google-signin-client_id" content="591242520454-3c3g58pbri2q49lr9k18j3e842bsmm9u.apps.googleusercontent.com" />
+<meta name="description" content="General: Do you not have a clue what your CV photo should be like? Don't worry, here we have the best advice for adding that final touch..." />
+<meta property="fb:app_id" content="589210761845168" />
+<meta property="image" content="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-3d51fa22c6f19bb8fdb13a3834bba98c.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How to take a good photo for your CV: Our top tips!" />
+<meta name="twitter:description" content="Do you not have a clue what your CV photo should be like? Don't worry, here we have the best advice for adding that final touch to your CV.
+One of our..." />
+<meta name="twitter:site" content="@erasmusu" />
+<meta name="twitter:creator" content="@erasmusu" />
+<meta name="twitter:image:src" content="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-3d51fa22c6f19bb8fdb13a3834bba98c.jpg" />
+<meta property="og:title" content="How to take a good photo for your CV: Our top tips!" />
+<meta property="og:description" content="Do you not have a clue what your CV photo should be like? Don't worry, here we have the best advice for adding that final touch to your CV.
+One of our..." />
+<meta property="og:image" content="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-3d51fa22c6f19bb8fdb13a3834bba98c.jpg" />
+<meta property="og:url" content="https://erasmusu.com/en/erasmus-blog/main/how-to-take-a-good-photo-for-your-cv-our-top-tips-965231" />
+<meta property="og:site_name" content="Erasmusu" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="article:section" content="General" />
+<meta property="article:author" content="Erasmusu" />
+<meta property="article:tag" content="General" /> <title>How to take a good photo for your CV: Our top tips! | General</title> <link href="https://d1bvpoagx8hqbg.cloudfront.net/css/erasmusu.all-v7.1.22.css" media="screen" rel="stylesheet" type="text/css" />
+<!--[if IE 7]><link href="https://d1bvpoagx8hqbg.cloudfront.net/css/ie7-v7.1.22.css" media="all" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if IE 8]><link href="https://d1bvpoagx8hqbg.cloudfront.net/css/ie8-v7.1.22.css" media="all" rel="stylesheet" type="text/css" /><![endif]-->
+<link href="https://d1bvpoagx8hqbg.cloudfront.net/css/favicon.png" rel="shortcut icon" type="image/x-icon" /> <meta name="viewport" content="width=device-width, initial-scale=1">
+<script async id="__cn_generic_script__2d25d81e-34b4-40de-bb14-6dba8d2820df" type="80bdbde2dcba5cb79b24ad3c-text/javascript">!function(e){function t(){if(!e.querySelector("#__cn_client_script_2d25d81e-34b4-40de-bb14-6dba8d2820df")){var t=e.createElement("script");t.setAttribute("src","https://cdn.connectif.cloud/eu2/client-script/2d25d81e-34b4-40de-bb14-6dba8d2820df"),e.body.appendChild(t)}}"complete"===e.readyState||"interactive"===e.readyState?t():e.addEventListener("DOMContentLoaded",t)}(document);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<input id="language" type="hidden" value='"en"'>
+<div id="g_id_onload" data-client_id="591242520454-3c3g58pbri2q49lr9k18j3e842bsmm9u.apps.googleusercontent.com" data-login_uri="https://erasmusu.com/en/login/google-login" data-can_register="true" data-cancel_on_tap_outside="false" data-uri_origin="http://erasmusu.com/en/erasmus-blog/main/how-to-take-a-good-photo-for-your-cv-our-top-tips-965231" style="position: fixed; top: 40px; left: 825px;
+            width: 0; height: 0; z-index: 1001;">
+</div>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQQH78P"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="h-container">
+<div id="h-content">
+<div id="fb-root"></div>
+
+<div id="header">
+<div class="header-wrapper">
+<a class="logo" href="https://erasmusu.com" title="">Erasmusu</a>
+<div class="navbar-menu">
+<ul class="menu">
+<li>
+<a href="https://erasmusu.com/en/student-housing">Accommodation</a>
+</li>
+<li>
+<a href="https://erasmusu.com/en/roommate">Roommates </a>
+</li>
+<li><a href="https://erasmusu.com/en/erasmus-destinations">Cities</a>
+</li>
+<li>
+<a href="https://discover.erasmusu.com/">
+ Discover
+</a>
+</li>
+</ul>
+<ul class="header-buttons">
+<li class="sep">
+<a class="login-trigger" href="https://erasmusu.com/en/login/do#login_popup" onclick="if (!window.__cfRLUnblockHandlers) return false; hideNavbarMenu()" data-cf-modified-80bdbde2dcba5cb79b24ad3c-="">
+<img src="/assets/Icons/account.svg" width="24px" height="24px" />
+<span>Log in</span>
+</a>
+</li>
+</ul>
+</div>
+<button class="menu-icon" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleNavbarMenu()" data-cf-modified-80bdbde2dcba5cb79b24ad3c-="">
+<i class="navbar-icon"></i>
+</button>
+</div>
+</div>
+
+<div id="wrapper" class="clearfix">
+<div class="clearfix relative ad-large">
+<div class="ad-large box left ad-banner-type-728-90" id="banner_950_90">
+<div class="inbox banner-content">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6902465111110257" crossorigin="anonymous" type="80bdbde2dcba5cb79b24ad3c-text/javascript"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6902465111110257" data-ad-slot="8948118720" data-ad-format="auto"></ins>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script> </div>
+</div>
+<div class="ad-large small box right ad-banner-type-193-90" id="banner_193_90">
+<div class="inbox banner-content">
+<a href="https://erasmusu.com/en/student-housing">
+<img class="lazyload" src="https://d1bvpoagx8hqbg.cloudfront.net/assets/banner/6336bb95dcf1c2.71929101.png" />
+</a>
+</div>
+</div>
+</div>
+
+<div id="infobar" class="box info relative">
+<div class="inbox">
+<ul class="breadcumb inline" itemscope="" itemtype="http://schema.org/BreadcrumbList"><li class="home" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+<a href="/" itemprop="item">
+<span itemprop="name">Home</span>
+<meta itemprop="position" content="1" />
+</a>
+</li><li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+<a href="https://erasmusu.com/en/erasmus-blog" itemprop="item">
+<span itemprop="name">Blogs</span>
+<meta itemprop="position" content="2" />
+</a>
+</li><li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+<a href="https://erasmusu.com/en/erasmus-blog/main" itemprop="item">
+<span itemprop="name">General</span>
+<meta itemprop="position" content="3" />
+</a>
+</li></ul> </div>
+</div>
+
+<div id="content" class="left-resp ">
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript">languageCode = 'en'</script>
+
+<div class="box">
+<div class="inbox">
+
+<div class="content-header alter relative">
+<h1 class="inline">How to take a good photo for your CV: Our top tips!</h1>
+</div>
+
+<div class="item post author clearfix">
+<div class="left">
+<div class="avatar">
+<a href="https://erasmusu.com/en/olivia-leicester-1555553">
+<img class=" js_retrying_not_found lazyload" data-src='https://d1bvpoagx8hqbg.cloudfront.net/75_75/5eb966f1c73195d6fdb5124b2af000e0.jpg' alt="Olivia Leicester" width="40" height="40" /> </a>
+</div>
+</div>
+<div class="tcell">
+<h3 class="name post">
+<p class="noMarginBottom">
+Translated by <img src="https://d1bvpoagx8hqbg.cloudfront.net/css/i/base/blank.gif" class="lazyload flag flag-gb" width="16px" height="11px" alt="flag-gb" /> <a href="https://erasmusu.com/en/olivia-leicester-1555553" itemprop="reviewer">
+Olivia Leicester </a>
+<small>&mdash; 3 years ago</small></p>
+<p class="noMarginBottom"> <a href="https://erasmusu.com/es/blog-erasmus/general/como-hacer-una-buena-foto-para-tu-curriculum-vitae-los-mejores-consejos-903405">Original text</a> by <a href="https://erasmusu.com/en/belen-munoz-carmona-1245005" itemprop="reviewer">
+<img src="https://d1bvpoagx8hqbg.cloudfront.net/css/i/base/blank.gif" class="lazyload flag flag-es" width="16px" height="11px" alt="flag-es" /> Belén Muñoz Carmona</a></p>
+</h3>
+<p class="noMarginBottom">
+Blog: <a href="https://erasmusu.com/en/erasmus-blog/translation-blog-by-olivia-in-english-56119" 0="">Translation blog by Olivia in English</a></br>Tags: <a href="https://erasmusu.com/en/erasmus-blog/main" class="dotted undernone">General</a>
+</p>
+</div>
+</div>
+
+<div class="content">
+<p>Do you not have a clue what your CV photo should be like? Don't worry, here we have the best advice for adding that final touch to your CV.</p>
+<p>One of our first concerns that comes to a head when we don't know <a href="https://www.studentjob.co.uk/application-tips/cv/free-cv-maker" class="">how to make a CV</a> is <strong>what kind of photo to include.</strong> We're not going to go into the debate of whether having a photo on the CV is a good or bad thing, we all know that employers should choose us for our qualities and skills. In fact, there are countries where it is even illegal to include them. However, a CV photo is still needed in Spain, you have a lot <strong>more chance</strong> of being chosen over someone who doesn't include one. Admit it, whether we like it or not, first impressions are very important. When we are choosing what film to watch on Netflix, the first thing we do is look at the film cover, and once one has caught our eye, we then read the description and hit play.</p>
+<p>With this, I don't want to say that the most important part of your CV is the photo, but bear in mind that this is our <strong>cover letter</strong> and you have to take care right down to the finest detail. A well-presented CV always works in your favour, and a good photo can help us stand out amongst the mountains of applications.</p>
+<h2>What should a CV photo be like?</h2>
+<p>Smiling or not? White background or something more casual? Can I take the photo at home or should I go to a photographer?</p>
+<p>It is strange that the time in which taking photos is easier than ever and we have so many different options, is the one where we have the hardest time deciding what photo to put on our CV. But don't worry, here you have some top tips that will help you choose <strong>the perfect photo:</strong></p>
+<ol>
+<li>The first worry is always: "How should I pose for my CV photo, <strong>serious or smiling? "</strong> Well it isn't necessary to bear your teeth at the camera, but a small smile gives off an impression of <strong>friendliness and closeness.</strong> If you don't want to smile, you can also say a lot with your eyes. The most important thing is that you are relaxed and you give off good energy. Well, I don't have to tell you that you should be naturally posed, so it's better to leave the pouts and the more out-there poses for your selfies instead.
+</li>
+<li>Recycling is important, but don't do that with your photos. However pretty you look in the picture from the beach, it is better to leave that photo in Mum's living room. And that photo with your friends which you look so, so good in? That too, sorry. <strong>Avoid cropping the photo.</strong>
+</li>
+<li>Sometimes it is better to be <strong>alone in a photo</strong>, and this is one of these times. Save the photos of you with your family and friends for the photo albums. And I am sure that you have a really cute pet, but, unless you are applying for a job as a dog-sitter, it's better than you leave that one out.
+</li>
+<li>Whether we want it to or not, time passes and you can't escape from it. Maybe you already have a photo that was perfect at the time, but your CV photo has to be an <strong>up-to-date photo.</strong> And what's more, it's better that you keep it up-to-date even if you have changed your look.
+</li>
+<li>CV photo <strong>with or without glasses?</strong> It depends, do you only take off your glasses to sleep? Then go ahead. But if you are one of those that only occasionally wear them, you don't need to wear them.
+</li>
+<li><strong>Neutral background.</strong> Remember that the most important person is you, so the background of your CV photo should be something neutral. It doesn't have to be white, it could be a <strong>different colour</strong> (but let's not get over-excited and go for a luminous yellow, we're better off with something bland). It seems to be that in most photos the background is white, so with a simple grey background or another neutral colour you will already be standing out, without taking too big of a risk and staying professional.
+</li>
+<li>Dress up, but not too much. Try to wear suitable <strong>clothes</strong>, that look professional and are not too informal, but at the same time don't dress yourself up like you are going to go out to party. Make sure that everything is clean and crease-free. The <strong>make-up</strong> is better if it is more a day-time style, and it can be very useful for covering up imperfections. In terms of <strong>hair</strong>, make sure that it is clean and styled. Try to follow the advice of your nana and don't cover your face with it, having your face visible is better.
+</li>
+<li>It should be a close-up shot, but not an extreme one. You want to be able to see your face clearly, not all your pores. <strong>Up to the shoulders or the chest</strong> would be ideal, so then you don't just have a floating head without having to show too much of your body.
+</li>
+</ol>
+<h2>How to take your CV photo at home</h2>
+<p>You can always <strong>take the photo at home</strong> if you want to save money on using a photographer, if you trust that you can do it yourself or simply because you are one of those people who needs like five hundred photos before finding one that looks okay.</p>
+<p>Here are some tips on how to take photos for your CV.</p>
+<ol>
+<li><strong>Ask someone to help you.</strong> Although you take amazing selfies that get thousands of likes, they don't look that professional.
+</li>
+<li><strong>Find some natural light.</strong> Using a lamp doesn't give us the same effect as a studio spotlight, so it is better to find natural light. This isn't to say you should look directly at the sun, more to avoid it. We don't want to take a photo sunburnt, neither with thousands of shadows on your face, which is why we need a softer light. The best time to take the photo is in the morning or the evening.
+</li>
+<li><strong>Watch out for the angle.</strong> The camera position and angle are very important, remember when you go to a photographer and they make you move your head millimetre by millimetre until it's just right. The best thing is to have the camera <strong>at face height</strong>, and if you tilt it to highlight or disguise something, that it isn't exaggerated. Practice in the mirror until you find your best side. Oh, and try to make sure your body is tilted towards the camera to make you seem closer, not the opposite.
+</li>
+<li><strong>Be careful with the background.</strong> Outside of a studio, it is more difficult to find <strong>smooth and well-lit surfaces</strong> that we can use as a background. If this is your case and you have to use a different background, the fewer things in it that take the attention away from you, the better. And if there are things there, make sure they are <strong>clean and tidy.</strong> Also, try to make sure it is out of focus so that the photo is centred on you as much as possible. If, on the other hand, you find a clear background, make sure to wear suitable coloured clothing, so that you don't stand out too much from the contrast between colours, or that you don't blend into the background.
+</li>
+</ol>
+<h2>How to edit a CV photo</h2>
+<p>Remember that this photo is for your CV, not for Instagram, so forget about the filters! And no, I'm not just referring to the effects like the ones with the dog ears. We want the photo to be <strong>natural and professional</strong>, so no matter how good that golden filter looks on you, you have to resist the temptation of using it.</p>
+<p>This isn't to say that you can't edit it and make the photo better. If it's a photo taken in a studio you won't need to, but it's okay for photos taken at home. We can <strong>adjust the contrast or brightness</strong> to get better lighting, reduce the <strong>shadows</strong>, increase or lower the <strong>warmth,</strong> change the <strong>saturation</strong> a bit so that the photo is clearer (or darker) etc. Keep trying until the photo is as professional as possible, but without it being noticeable that it has been really edited.</p>
+<h2>What are the best CV photo editors online?</h2>
+<p>As you shouldn't excessively edit the photo, practically any online editor offers the basic tools that we might need, like the crop function or adjusting the brightness and contrast.</p>
+<p><a href="https://pixlr.com/editor/" rel="nofollow" class="">Pixlr</a> and <a href="https://www.fotor.com/app.html#/editor/basic" rel="nofollow" class="">Fotor</a> are two editors which are very good and free that could come in handy. Maybe it doesn't sound very professional, but the truth is that even Instagram can help you retouch your photo and get a good result.</p>
+<h2>How to insert a photo into your CV?</h2>
+<p>Where should you put the CV photo, on the right or the left? It will depend on the design of your CV, but the best place to put it is at <strong>the top of the first page.</strong> If in the photo you seem a bit angled to show off your good side, the photo should go on the side where your nose is angled towards the document and not vice-versa.</p>
+<p><img src="https://d1bvpoagx8hqbg.cloudfront.net/originals/como-buena-foto-tu-curriculum-vitae-mejores-consejos-4118039c8332436b798beb243220ddc2.jpg"></p>
+<p>The position of your photo is not the only thing you have to bear in mind when adding a photo to your CV. The first thing that you should check is that its <strong>good quality</strong>, a bad quality photograph will give a bad image of you - pun intended. It also shouldn't be in the centre of your CV, so that you aren't taking up too much of the focus of the CV, only what is necessary. The size of your CV photo will depend on the format and design of your CV, but try not to use more space than is absolutely necessary than to see the photo clearly in one glance.</p>
+<p>If you crop it, remember to keep the photo <strong>well-squared</strong> and that you don't alter the <strong>proportions</strong> of your face. So don't change the length or width of your face so that it fits exactly in the space or it will look a bit deformed.</p>
+<h2>Should you put a whole-body photo on your CV?</h2>
+<p>Don't complicate things too much by posing for your CV photos, because unless your CV is for a modelling agency, it's better that you don't include your full body shot. Your appearance isn't the most important thing about your CV. The photo helps to get to know you better, since your expression can say a lot about your personality, and a whole-body photo isn't going to say any more about you. Also, it will <strong>take up too much space and you won't be able to see your face as well as you should.</strong> </p>
+<h2>Examples of CV photos</h2>
+<p>The differences between these photos can seem very subtle, but there are lots of different types of photos for a CV and the smallest detail could be your stand out feature. Here we have a few examples:</p>
+<p><img src="https://d1bvpoagx8hqbg.cloudfront.net/originals/como-buena-foto-tu-curriculum-vitae-mejores-consejos-c30b5266d366f4295f5ec6e8e9f451ae.jpg"></p>
+<p><img src="https://d1bvpoagx8hqbg.cloudfront.net/originals/como-buena-foto-tu-curriculum-vitae-mejores-consejos-c31614fd99c37ef0a8cdb2cf10db3d7a.jpg"></p>
+<p><img src="https://d1bvpoagx8hqbg.cloudfront.net/originals/como-buena-foto-tu-curriculum-vitae-mejores-consejos-628f6457c5003b6ac747d972eca15570.jpg"></p>
+<p><img src="https://d1bvpoagx8hqbg.cloudfront.net/originals/como-buena-foto-tu-curriculum-vitae-mejores-consejos-66295e580e8ed384badf663be0e0ec3b.jpg"></p>
+<p>Now that you have a clearer idea of what kind of photo to include in your CV, the rest is up to you. Bear in mind that the photo is only one part of your CV, so you need to make sure that the rest of your CV is just as perfect as the photo, which I'm sure you can do. Have a look at this post if you are stuck <a href="https://erasmusu.com/es/blog-erasmus/noticias-erasmus/descubre-que-poner-en-el-perfil-profesional-del-curriculum-866849" rel="nofollow" class="">what to put in the professional profile section of your CV</a>. Once you have done that, you're now ready to <a href="https://www.studentjob.co.uk/" class="">find a job</a>! Take a look at all the job offers available on <a href="https://www.studentjob.co.uk/" class="">StudentJob</a> and start working as soon as possible.</p>
+<p><strong>StudentJob</strong></p>
+<div class="js-contest-display" data-id="965231"></div>
+<hr />
+<h2>Photo gallery</h2>
+</div>
+<ul class="galleryContent">
+<li class="effect">
+<a rel="group1" href="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-3d51fa22c6f19bb8fdb13a3834bba98c.jpg" class="item avatar">
+<img class=" js_retrying_not_found image-item lazyload" data-src='https://d1bvpoagx8hqbg.cloudfront.net/75_75/how-to-take-a-good-photo-for-your-cv-our-top-tips-3d51fa22c6f19bb8fdb13a3834bba98c.jpg' alt="How to take a good photo for your CV: Our top tips!" width="75" height="75" /> </a>
+<a rel="group1" href="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-a7dab57f5efba015a102fad5b1b7df84.jpg" class="item avatar">
+<img class=" js_retrying_not_found image-item lazyload" data-src='https://d1bvpoagx8hqbg.cloudfront.net/75_75/how-to-take-a-good-photo-for-your-cv-our-top-tips-a7dab57f5efba015a102fad5b1b7df84.jpg' alt="How to take a good photo for your CV: Our top tips!" width="75" height="75" /> </a>
+<a rel="group1" href="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-9c789ace53283a36f7a3ccf9646be14f.jpg" class="item avatar">
+<img class=" js_retrying_not_found image-item lazyload" data-src='https://d1bvpoagx8hqbg.cloudfront.net/75_75/how-to-take-a-good-photo-for-your-cv-our-top-tips-9c789ace53283a36f7a3ccf9646be14f.jpg' alt="How to take a good photo for your CV: Our top tips!" width="75" height="75" /> </a>
+<a rel="group1" href="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-5f07136208f95a331fe50de978f4b4b4.jpg" class="item avatar">
+<img class=" js_retrying_not_found image-item lazyload" data-src='https://d1bvpoagx8hqbg.cloudfront.net/75_75/how-to-take-a-good-photo-for-your-cv-our-top-tips-5f07136208f95a331fe50de978f4b4b4.jpg' alt="How to take a good photo for your CV: Our top tips!" width="75" height="75" /> </a>
+<a rel="group1" href="https://d1bvpoagx8hqbg.cloudfront.net/originals/how-to-take-a-good-photo-for-your-cv-our-top-tips-e529cea3222e81502875a139a070a9fe.jpg" class="item avatar">
+<img class=" js_retrying_not_found image-item lazyload" data-src='https://d1bvpoagx8hqbg.cloudfront.net/75_75/how-to-take-a-good-photo-for-your-cv-our-top-tips-e529cea3222e81502875a139a070a9fe.jpg' alt="How to take a good photo for your CV: Our top tips!" width="75" height="75" /> </a>
+</ul>
+
+<hr />
+
+<div class="likebox">
+<a class="login-trigger er-button " href="#login_popup"><span>
+&hearts;&nbsp; Like </span></a>
+<a class="right er-button" href="https://twitter.com/share?original_referer=https%3A%2F%2Ferasmusu.com%2Fen%2Ferasmus-blog%2Fmain%2Fhow-to-take-a-good-photo-for-your-cv-our-top-tips-965231&text=How+to+take+a+good+photo+for+your+CV%3A+Our+top+tips%21%2C+N%2FA+%23erasmus+%23N%2FA&url=https%3A%2F%2Ferasmusu.com%2Fen%2Ferasmus-blog%2Fmain%2Fhow-to-take-a-good-photo-for-your-cv-our-top-tips-965231&via=erasmusu">
+<span><i class="twitter"></i> Tweet it &#8594;</span>
+</a>
+<a class="right er-button" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Ferasmusu.com%2Fen%2Ferasmus-blog%2Fmain%2Fhow-to-take-a-good-photo-for-your-cv-our-top-tips-965231&t=How+to+take+a+good+photo+for+your+CV%3A+Our+top+tips%21&src=sp">
+<span><i></i> Share on Facebook &#8594;</span>
+</a>
+</div>
+<hr />
+<div>
+<h3><strong>Content available in other languages</strong></h3>
+<div class="content">
+<ul>
+<li><strong>Español:</strong> <a href="https://erasmusu.com/es/blog-erasmus/general/como-hacer-una-buena-foto-para-tu-curriculum-vitae-los-mejores-consejos-903405">Cómo hacer una buena foto para tu curriculum vitae: ¡los mejores consejos!</a>
+</li>
+<li><strong>Français:</strong> <a href="https://erasmusu.com/fr/blog-erasmus/generale/les-meilleurs-conseils-pour-faire-une-bonne-photo-pour-votre-cv-912015">Les meilleurs conseils pour faire une bonne photo pour votre CV</a>
+</li>
+<li><strong>Polski:</strong> <a href="https://erasmusu.com/pl/erasmus-blog/ogolne/jak-powinno-wygladac-zdjecie-do-twojego-cv-najlepsze-porady-915903">Jak powinno wyglądać zdjęcie do Twojego CV: najlepsze porady!</a>
+</li>
+<li><strong>Italiano:</strong> <a href="https://erasmusu.com/it/blog-erasmus/generale/come-scattare-la-foto-ideale-per-il-vostro-cv-i-consigli-perfetti-in-un-unico-post-936321">Come scattare la foto ideale per il vostro CV: i consigli perfetti in un unico post!</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="feed box">
+<div class="comments inbox">
+<div class="feed-header">
+<h3 class="single">Comments <span>(0 comments)</span></h3>
+</div>
+<br />
+<a name="last"></a>
+
+<form id="comment" class="alter">
+<a class="login-trigger buttonRounded follow action inline undernone" href="#login_popup">
+<span>Add comment &#8594;</span>
+</a>
+</form>
+
+</div>
+</div>
+
+
+<div class="box">
+<div class="inbox">
+<h3>Want to have your own Erasmus blog?</h3>
+<p>If you are experiencing living abroad, you're an avid traveller or want to promote the city where you live... <strong>create your own blog and share your adventures!</strong></p>
+<a class="er-button" href="https://erasmusu.com/en/new-blog"><span>I want to create my Erasmus blog! &#8594;</span></a>
+</div>
+</div>
+</div>
+<div id="aside" class="right-resp">
+
+<div class="box">
+<div class="inbox effect">
+<h4>Want to have your own Erasmus blog?</h4>
+<p>
+<a class="er-button" href="https://erasmusu.com/en/new-blog"><span>I want to create my Erasmus blog! &#8594;</span></a>
+<p>
+</div>
+</div>
+
+<div class="box">
+<div class="inbox effect">
+<h4>More publications in this category</h4>
+<ul class="listNormal noMarginBottom">
+<li><a href="https://erasmusu.com/en/erasmus-blog/main/canada-labour-lawan-overview-1463793">Canada Labour Law—An Overview</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-blog/main/how-much-do-restaurants-spend-on-advertising-a-comprehensive-guide-1463338">How Much Do Restaurants Spend on Advertising: A Comprehensive Guide</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-blog/main/best-ways-to-get-the-best-deals-on-bicycle-1463301">Best Ways To Get The Best Deals On Bicycle</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-blog/main/most-famous-cinemas-in-lahore-1463265">Most Famous Cinemas in Lahore</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-blog/main/latest-web-design-trends-in-2023-must-pay-heed-to-them-1462683">Latest Web Design Trends in 2023 | Must Pay Heed to Them</a></li>
+</ul>
+</div>
+</div>
+
+<div class="mobile-hidden banner ad-banner-300-250 box" id="b-4457">
+<div class="inbox">
+<div class="banner-content">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6902465111110257" crossorigin="anonymous" type="80bdbde2dcba5cb79b24ad3c-text/javascript"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6902465111110257" data-ad-slot="2901585125" data-ad-format="auto"></ins>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+</div>
+<div id="bannersFixed">
+</div>
+
+</div>
+</div>
+
+<div class="none">
+<div id="login_popup">
+<button name="facebook_login" type="submit" class="fb_connect centered er-button fb">
+<img src="/assets/i/facebook.svg" alt="Facebook Login" height="24px" width="24px" />
+Login with Facebook </button>
+<button name="google_login" type="submit" class="googleSignin centered er-button google">
+<img src="/assets/i/google.svg" alt="Google Login" height="24px" width="24px" />
+Log in with Google </button>
+
+<div class="loginTitle">
+<div class="loading none">
+<br />
+<img src="https://d1bvpoagx8hqbg.cloudfront.net/css/i/loading.gif" alt="" />
+</div>
+</div>
+
+
+<div class="clearfix">
+
+<div class="box left-resp">
+<div class="inbox">
+<p id="login_error" class="system error none login_error">
+</p>
+<form id="login_form" class="alter login_form noMarginBottom" method="post" action="https://erasmusu.com/en/login">
+<input type="hidden" name="login_url" value="" id="login_url" /> <div class="field"><label for="login_email" class="required">Email</label>
+<input type="text" name="login_email" id="login_email" value="" tabindex="1" autofocus="autofocus" /></div> <label for="login_password">Password <small><a href="https://erasmusu.com/en/remember/index">Recover password</a></small></label>
+<div class="field">
+<input type="password" name="login_password" id="login_password" value="" tabindex="2" /></div> <button name="login_submit" id="login_submit" type="submit" class="er-button er-button-secondary follow action"><span>Log in</span></button> </form>
+</div>
+</div>
+
+</div>
+
+
+<div class="box registerMessage">
+<div class="inbox">
+<p class="noMarginBottom">Don’t have an account? <strong><a href="https://erasmusu.com/en/register" class="">Sign up</a></strong>. </p>
+</div>
+</div>
+
+</div>
+</div>
+<div id="footer">
+<div class="container">
+<div>
+<h5>Erasmus destinations</h5>
+<ul>
+<li><a href="https://erasmusu.com/en/erasmus-destinations">Erasmus destinations</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-countries">Erasmus countries</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-universities">Erasmus universities</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-cities-ranking">Erasmus cities Ranking</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-universities-ranking">Erasmus universities Ranking</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-students">Erasmus students</a></li>
+</ul>
+</div>
+<div>
+<h5>Erasmus content</h5>
+<ul>
+<li><a href="https://erasmusu.com/en/erasmus-forum">Erasmus forum</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-blog">Erasmus blog</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-experiences">Erasmus experiences</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-places">Erasmus places</a></li>
+<li><a href="https://erasmusu.com/en/student-housing">Erasmus student housing</a></li>
+<li><a href="https://erasmusu.com/en/student-jobs">Student jobs</a></li>
+<li><a href="https://erasmusu.com/en/roommate">Roommates</a></li>
+<li><a href="https://erasmusu.com/en/erasmus-photos">Erasmus photos</a></li>
+</ul>
+</div>
+<div>
+<h5>About Erasmusu</h5>
+<ul>
+<li><a href="https://erasmusu.notion.site/erasmusu/Select-your-language-Selecciona-tu-idioma-a02a40779a48411e867ba3561e067263" target="_blank">Erasmusu Help Center</a></li>
+<li><a href="https://erasmusu.com/en/team">The team</a></li>
+<li>
+<a href="https://www.notion.so/erasmusu/Join-Erasmusu-com-41b90b38aebf4e2ebd86ddb75fc7beb4" target="_blank" rel="nofollow">
+Join us! Job offers and internships </a>
+</li>
+<li><a href="https://twitter.com/erasmusu" target="_blank">Twitter</a></li>
+<li><a href="https://facebook.com/erasmusu" target="_blank">Facebook</a></li>
+<li><a href="https://www.linkedin.com/company/erasmusu/" target="_blank">LinkedIn</a></li>
+<li>
+<a href="https://www.instagram.com/erasmusu/" target="_blank">Instagram</a>
+<span class="instagram_new">New!</span>
+</li>
+<li><a href="https://erasmusu.com/en/erasmus-blog/erasmusu-blog">Erasmusu blog</a></li>
+<li><a href="https://erasmusu.com/en/legal">Terms of use</a></li>
+<li><a href="https://erasmusu.com/en/legal#section-13">Privacy and Cookie Policy</a></li>
+</ul>
+</div>
+<div>
+<h5>Languages available</h5>
+<ul>
+<li>
+<a href="
+                                https://erasmusu.com/es/">
+Español </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com">
+English </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/fr/">
+Français </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/it/">
+Italiano </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/pt/">
+Português </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/pl/">
+Polski </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/tr/">
+Türkçe </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/de/">
+Deutsch </a>
+</li>
+<li>
+<a href="
+                                https://erasmusu.com/nl/">
+ Nederlands </a>
+</li>
+</ul>
+</div>
+</div>
+<p class="trademark">ERASMUS® is a registered trademark owned by the European Union and represented by the European Commission. <br /> This website is just a Social Network or Online Community for international students and is not related in any way to the ERASMUS® trademark. <br />This website is not related to the European Union and the European Commission either.</p>
+</div>
+
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="https://erasmusu.com/en/js/configuration/v7.1.22"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="https://d1bvpoagx8hqbg.cloudfront.net/js/default.bundle.js?v7.1.22"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="https://erasmusu.com/en/js/language/v7.1.22"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="https://erasmusu.com/js/tiny_mce/tiny_mce.js?v=v7.1.22"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="https://connect.facebook.com/en_US/sdk.js"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" defer="defer" src="https://apis.google.com/js/platform.js?onload=googleAuth"></script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript">
+    //<![CDATA[
+    $(function(){ window.listenLogin = function() {erasmusu.Popup.Login.init("248470961856231")};listenLogin();$(function(){erasmusu.Banner.countPrint();});erasmusu.Autocomplete.init();currentHostName = "erasmusu.com";urlBaseAssets = 'https://d1bvpoagx8hqbg.cloudfront.net';erasmusu.Utils.countPrint(965231, 
+                "item", 4);erasmusu.Forms.init();erasmusu.Banner.renderFloating({"enable":"1","code":"overalia"}
+                );;erasmusu.Banner.addToCountPrint(4457);;$(".galleryContent a").fancybox();erasmusu.LikeBox.init();erasmusu.Banner.addToCountPrint(4458); })    //]]>
+</script>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript" src="/js/blog_view.bundle.js?v7.1.22"></script>
+</div>
+<div id="sending_modal" class="screenshot-modal homeAgencies narrawTip">
+<h3>Wait a moment, please</h3>
+<p>
+Run hamsters! Run! <img class="molinillo_photo" src="https://d1bvpoagx8hqbg.cloudfront.net/css/admin/ajax-loader.gif" width="16px" height="16px" />
+</p>
+</div>
+<script type="80bdbde2dcba5cb79b24ad3c-text/javascript">erasmusu.Banner.render("consent");</script>
+</div>
+<div id='layout_cn_client'></div>
+<div class="cn_banner_placeholder" style="display: none" id="pushSuscription">
+</div>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="80bdbde2dcba5cb79b24ad3c-|49" defer=""></script></body>
+</html>
