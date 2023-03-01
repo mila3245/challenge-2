@@ -3,7 +3,14 @@
   background-color: beige;
   color: brown;
 }
-
+header{
+  float: center;
+  text-align: center;
+  padding:18px
+}
+.topnav{
+  background-color: rgb(87, 19, 19);
+}
 body {
   margin: 20px;
   padding: 10px;
@@ -19,7 +26,6 @@ h5,
 h6 {
   margin: 0;
 }
-
 
 id.resume {
   position: relative;
