@@ -39,3 +39,13 @@ p {
 footer {
 background-color: rgb(220, 102, 102);
 }
+#contact {background-color: aqua; width: 50%;}
+
+
+@media only screen (max-width 700px){
+  #contact background-color: blue;
+  
+}
+@media all (max-width 1024px)(min-width 320){
+#work {width 55%}
+}
